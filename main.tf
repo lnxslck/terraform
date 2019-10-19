@@ -60,7 +60,7 @@ resource "aws_launch_configuration" "example" {
 data "aws_availability_zones" "all" {}
 
 resource "aws_autoscaling_group" "example" {
-  launch_configuration = "${aws_launch_configuration.example.id}}"
+  launch_configuration = "${aws_launch_configuration.example.name}"
   availability_zones = [
     "$data.aws_availability_zones.all.names"]
   max_size = 2
@@ -80,7 +80,7 @@ resource "aws_autoscaling_group" "example" {
 resource "aws_elb" "example" {
   name = "terraform-asg-example"
   availability_zones = [
-    data.aws_availability_zones.all.names]
+    data.aws_availability_zones.all.names[0]]
   security_groups = [
     aws_security_group.elb.id]
 
