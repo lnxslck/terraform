@@ -63,8 +63,8 @@ resource "aws_autoscaling_group" "example" {
   launch_configuration = "${aws_launch_configuration.example.name}"
   availability_zones = [
     "$data.aws_availability_zones.all.names"]
-  max_size = 2
-  min_size = 10
+  max_size = 10
+  min_size = 2
 
   load_balancers = [
     aws_elb.example.name]
